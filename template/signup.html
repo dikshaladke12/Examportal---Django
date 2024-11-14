@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Responsive Registration Form | CodingLab </title>
+  <link rel="stylesheet" href="{% static 'signup/css/signup.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form action="{% url 'signup' %}" method="post">
+        {% csrf_token %}
+          <div class="user-details">
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <input type="text" placeholder="Enter your name" name="firstname" required>
+          </div>
+          <div class="input-box">
+            <span class="details">last Name</span>
+            <input type="text" placeholder="Enter your name" name="lastname" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="email" placeholder="Enter your email" name="email" required>
+            {% if messages %}
+              {% for message in messages %}
+                <span class="details">{{message}}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="tel" placeholder="Enter your number" name="phoneNo" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" placeholder="Enter your username" name="username" required>
+            {% if messages %}
+              {% for message in messages %}
+                <span class="details">{{message}}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" placeholder="Enter your password" name="password" required>
+          </div>
+        </div>
+        
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
