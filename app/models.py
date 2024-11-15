@@ -9,13 +9,13 @@ class resetuuid(models.Model):
     user = models.ForeignKey(to = User, on_delete= models.CASCADE)
     expiry = models.DateTimeField()   
 
-class UserTable(models.Model):
-    f_name = models.CharField(max_length=50)
-    l_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+# class UserTable(models.Model):
+#     f_name = models.CharField(max_length=50)
+#     l_name = models.CharField(max_length=50)
+#     email = models.CharField(max_length=50)
     
-    def __str__(self):
-        return self.f_name
+#     def __str__(self):
+#         return self.f_name
  
 choices = (
         ('is_mcq','is_mcq'),
@@ -23,8 +23,6 @@ choices = (
     ) 
   
 class Question(models.Model):
-    
-   
     question = models.CharField(max_length=100)
     q_type = models.CharField(max_length=50, choices=choices)
     
@@ -41,7 +39,7 @@ class Options(models.Model):
     
     
 class AnswerTable(models.Model):
-    u_id = models.ForeignKey(to = UserTable , on_delete=models.SET_NULL, null=True)
+    u_id = models.ForeignKey(to = User , on_delete=models.SET_NULL, null=True)
     q_id = models.ForeignKey(to = Question , on_delete= models.CASCADE)
     o_id = models.ForeignKey(to = Options , on_delete= models.SET_NULL, null= True, blank=True)    
     ans = models.TextField(max_length= 100, null= True , blank=True) 
