@@ -3,7 +3,12 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     phoneNo = models.CharField(max_length =12,null=True)
-    
+
+class resetuuid(models.Model):
+    UUID = models.UUIDField(unique=True)
+    user = models.ForeignKey(to = User, on_delete= models.CASCADE)
+    expiry = models.DateTimeField()   
+
 class UserTable(models.Model):
     f_name = models.CharField(max_length=50)
     l_name = models.CharField(max_length=50)

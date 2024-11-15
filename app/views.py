@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.decorators import method_decorator
 from .models import User
+from django.utils.timezone import timedelta,now
+import datetime
 
 
 class index(View):
@@ -77,3 +79,19 @@ class logoutview(View):
     def get(self, request):
         logout(request)
         return redirect("/")
+
+class Forgot(View):
+    def get(Self, request):
+        return render(request, "forgot.html")
+    
+    def post(self, request):
+        email = request.POST.get("email")
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email = email)
+            exp_date = datetime.datetime.now()+ datetime.timedelta(hours = 2)
+            
+
+
+class Resetpassword(View):
+    def get(self, request):
+        return render(request, "resetpassword.html")
